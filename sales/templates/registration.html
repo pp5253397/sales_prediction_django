@@ -1,0 +1,37 @@
+{% load static %}
+<html data-theme="light">
+    <head>
+        <title>Registration</title>
+    
+    <script src="https://kit.fontawesome.com/e25b852c87.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="theme-toggle">
+            <input type="checkbox" id="theme-toggle-btn">
+            <label for="theme-toggle-btn">
+                <i class="fas fa-moon toggle-icon"></i>
+            </label>
+        </div>
+        <h1>Registration</h1>
+        <div class="input-group">
+            <label for="email-input">Username</label>
+            <input type="text" id="user-input" name="username" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="email-input">Email</label>
+            <input type="email" id="email-input" name="email" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="password-input">Password</label>
+            <input type="password" id="password-input" name="password" autocomplete="off">
+        </div>
+    
+        <button class="signIn-btn">Register</button>
+        <a href="{% url 'login' %}" style="text-align: center;" class="signIn-btn">Sign in</a>
+    </form>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+    </html>

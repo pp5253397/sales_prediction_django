@@ -1,0 +1,411 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="#">
+    <title>Sales -  Store</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Menu CSS -->
+   <!-- animation CSS -->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="{% static 'css/colors/default.css' %}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<style>
+    /* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
+<style>
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #486e2e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 16px;
+      padding: 5px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 0;
+    }
+    
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+    
+    .button:hover span {
+      padding-right: 25px;
+    }
+    
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    </style>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <!-- <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div> -->
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a class="logo" href="{% url 'dashboard' %}">
+                        <!-- Logo icon image, you can use font-icon also -->
+                        <b>
+                            <h3>Sales Panel</h3>
+                        </b>
+                        <!-- Logo text image you can use text also -->
+                        
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
+                    </li>
+                   
+                    <li>
+                        <a class="profile-pic" href="#"> <b class="hidden-xs">Hi Welcome {{ user }}</b></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav slimscrollsidebar">
+                <div class="sidebar-head">
+                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li style="padding: 70px 0 0;">
+                        <a href="{% url 'dashboard' %}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'addsales' %}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Add Sales</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'product' %}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Products</a>
+                    </li>
+                    
+                    <li>
+                        <a href="{% url 'logout' %}" class="waves-effect"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                    </li>
+                    
+                    
+                    
+
+                </ul>
+               
+            </div>
+            
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Add Sales</h4> </div>
+                    
+                    <!-- /.col-lg-12 -->
+                </div>
+             
+               
+          
+
+                <!-- ============================================================== -->
+                <!-- table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            
+                            <h3 class="box-title">Add Sales</h3>
+                            <div class="table-responsive">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>PRODUCT NAME</th>
+                                            <th>DATE</th>
+                                            <th>QTY</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            
+                                            <td><select style="width: 150px;height: 35px;" name="product_name">
+                                                {% for i in product %}
+                                                <option value="{{ i.product_name }}">{{ i.product_name }}</option>
+                                                {% endfor %}
+                                            </select></td>
+                                            <td><input id="today" type="date" name="sale_date" style="height: 35px;"></td>
+                                            <td style="width: 5px;"><input type="number" name="qty" style="width: 70px; height: 35px;"></td>
+                                           <td style="width: 150px;"> <button class="button" type="submit" style="vertical-align:middle; height: 35px; width: 125px;"><span>Add </span></button></td>
+                                        </tr>
+                                     
+                                    </tbody>
+                                   
+                                </table>
+                            </form>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- table -->
+                <!-- ============================================================== -->
+                <form method="GET">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            
+                            <h3 class="box-title">Product Information</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>PRODUCT NAME</th>
+                                            <th>DATE</th>
+                                            <th>QTY</th>
+                                            <th>ACTION</th>
+                                            
+                                           
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                         
+                                            <td class="txt-oflo">{{ user.product_name }}</td>
+                                            <td>{{ user.sale_date }}</td>
+                                            <td style="width: 5px;"><input type="number" id="id_qty" name="qty" value = "{{ user.qty }}" style="width: 70px; height: 35px;" disabled></td>
+                                            <td style="width: 150px;"> <a href="/sales/delete/{{ user.id }}/" class="button"   style="vertical-align:middle; height: 35px; width: 125px; background-color: red;"><span>Delete </span></a></td>
+                                           
+                                            
+                                            
+                                        </tr>
+                                       
+                                        {% endfor %}
+
+                                    </tbody>
+                                    
+                                </table>
+
+                                {% if users.has_other_pages %}
+  <ul class="pagination">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                <!-- ============================================================== -->
+                <!-- chat-listing & recent comments -->
+                <!-- ============================================================== -->
+                
+            
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2020 &copy; Sales Panel </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+   
+   <script>
+
+
+let today = new Date().toISOString().substr(0, 10);
+document.querySelector("#today").value = today;
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <!--slimscroll JavaScript -->
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'js/waves.js' %}"></script>
+    <!--Counter js -->
+
+    <!-- chartist chart -->
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/dashboard1.js' %}"></script>
+<style>
+    .table th {
+  cursor: pointer;
+}
+
+.table .th-sort-asc::after {
+  content: "\25b4";
+}
+
+.table .th-sort-desc::after {
+  content: "\25be";
+}
+
+.table .th-sort-asc::after,
+.table .th-sort-desc::after {
+  margin-left: 5px;
+}
+
+.table .th-sort-asc,
+.table .th-sort-desc {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+</style>
+
+<script>
+    /**
+ * Sorts a HTML table.
+ *
+ * @param {HTMLTableElement} table The table to sort
+ * @param {number} column The index of the column to sort
+ * @param {boolean} asc Determines if the sorting will be in ascending
+ */
+function sortTableByColumn(table, column, asc = true) {
+  const dirModifier = asc ? 1 : -1;
+  const tBody = table.tBodies[0];
+  const rows = Array.from(tBody.querySelectorAll("tr"));
+
+  // Sort each row
+  const sortedRows = rows.sort((a, b) => {
+    const aColText = a
+      .querySelector(`td:nth-child(${column + 1})`)
+      .textContent.trim();
+    const bColText = b
+      .querySelector(`td:nth-child(${column + 1})`)
+      .textContent.trim();
+
+    return aColText > bColText ? 1 * dirModifier : -1 * dirModifier;
+  });
+
+  // Remove all existing TRs from the table
+  while (tBody.firstChild) {
+    tBody.removeChild(tBody.firstChild);
+  }
+
+  // Re-add the newly sorted rows
+  tBody.append(...sortedRows);
+
+  // Remember how the column is currently sorted
+  table
+    .querySelectorAll("th")
+    .forEach((th) => th.classList.remove("th-sort-asc", "th-sort-desc"));
+  table
+    .querySelector(`th:nth-child(${column + 1})`)
+    .classList.toggle("th-sort-asc", asc);
+  table
+    .querySelector(`th:nth-child(${column + 1})`)
+    .classList.toggle("th-sort-desc", !asc);
+}
+
+document.querySelectorAll(".table th").forEach((headerCell) => {
+  headerCell.addEventListener("click", () => {
+    const tableElement = headerCell.parentElement.parentElement.parentElement;
+    const headerIndex = Array.prototype.indexOf.call(
+      headerCell.parentElement.children,
+      headerCell
+    );
+    const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+    sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+  });
+});
+
+</script>
+
+
+
+</body>
+
+</html>
